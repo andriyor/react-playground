@@ -26,7 +26,8 @@ import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Button.css";
 
 import "@mantine/core/styles.css";
-import { StickyTable } from "./Table.tsx";
+import { TableStickyTransform } from "./TableStickyTransform.tsx";
+import { TablePositionSticky } from "./TablePositionSticky.tsx";
 
 const Home = () => {
   return (
@@ -44,8 +45,12 @@ const routes = [
   { path: "/modal", component: <ModalPage /> },
   { path: "/", component: <Home /> },
   {
-    path: "/table",
-    component: <StickyTable />,
+    path: "/TablePositionSticky",
+    component: <TablePositionSticky />,
+  },
+  {
+    path: "/TableStickyTransform",
+    component: <TableStickyTransform />,
   },
 ];
 

@@ -86,9 +86,30 @@ const Table = ({ columns, data }: TableProps) => {
 };
 
 const sampleData = [
-  { id: 1, name: "John Doe", email: "john@example.com", role: "Developer", department: "Engineering", status: "Active" },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Designer", department: "Design", status: "Active" },
-  { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Manager", department: "Management", status: "On Leave" },
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    role: "Developer",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    role: "Designer",
+    department: "Design",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    role: "Manager",
+    department: "Management",
+    status: "On Leave",
+  },
   {
     id: 4,
     name: "Alice Williams",
@@ -113,15 +134,78 @@ const sampleData = [
     department: "Product",
     status: "Active",
   },
-  { id: 7, name: "Eve Martinez", email: "eve@example.com", role: "Developer", department: "Engineering", status: "Active" },
-  { id: 8, name: "Frank Wilson", email: "frank@example.com", role: "Designer", department: "Design", status: "Remote" },
-  { id: 9, name: "Grace Lee", email: "grace@example.com", role: "Developer", department: "Engineering", status: "Active" },
-  { id: 10, name: "Henry Taylor", email: "henry@example.com", role: "DevOps", department: "Operations", status: "Active" },
-  { id: 11, name: "Ivy Anderson", email: "ivy@example.com", role: "Developer", department: "Engineering", status: "On Leave" },
-  { id: 12, name: "Jack Thomas", email: "jack@example.com", role: "Manager", department: "Management", status: "Active" },
-  { id: 13, name: "Karen Moore", email: "karen@example.com", role: "Designer", department: "Design", status: "Remote" },
-  { id: 14, name: "Leo Jackson", email: "leo@example.com", role: "Developer", department: "Engineering", status: "Active" },
-  { id: 15, name: "Mia White", email: "mia@example.com", role: "QA Engineer", department: "Quality Assurance", status: "Active" },
+  {
+    id: 7,
+    name: "Eve Martinez",
+    email: "eve@example.com",
+    role: "Developer",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 8,
+    name: "Frank Wilson",
+    email: "frank@example.com",
+    role: "Designer",
+    department: "Design",
+    status: "Remote",
+  },
+  {
+    id: 9,
+    name: "Grace Lee",
+    email: "grace@example.com",
+    role: "Developer",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 10,
+    name: "Henry Taylor",
+    email: "henry@example.com",
+    role: "DevOps",
+    department: "Operations",
+    status: "Active",
+  },
+  {
+    id: 11,
+    name: "Ivy Anderson",
+    email: "ivy@example.com",
+    role: "Developer",
+    department: "Engineering",
+    status: "On Leave",
+  },
+  {
+    id: 12,
+    name: "Jack Thomas",
+    email: "jack@example.com",
+    role: "Manager",
+    department: "Management",
+    status: "Active",
+  },
+  {
+    id: 13,
+    name: "Karen Moore",
+    email: "karen@example.com",
+    role: "Designer",
+    department: "Design",
+    status: "Remote",
+  },
+  {
+    id: 14,
+    name: "Leo Jackson",
+    email: "leo@example.com",
+    role: "Developer",
+    department: "Engineering",
+    status: "Active",
+  },
+  {
+    id: 15,
+    name: "Mia White",
+    email: "mia@example.com",
+    role: "QA Engineer",
+    department: "Quality Assurance",
+    status: "Active",
+  },
 ];
 
 const sampleColumns = [
@@ -137,7 +221,7 @@ export default Table;
 export { sampleData, sampleColumns };
 export type { Column, TableProps };
 
-export const StickyTable = () => {
+export const TablePositionSticky = () => {
   return (
     <div>
       <Table columns={sampleColumns} data={sampleData} />
