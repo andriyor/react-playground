@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Link } from "react-router";
 import ModalPage from "./ModalPage";
 
 import "@mantine/core/styles/baseline.css";
@@ -27,11 +27,30 @@ import "@mantine/core/styles/Button.css";
 
 import "@mantine/core/styles.css";
 
+const Home = () => {
+  return (
+    <>
+      {routes.map((route) => (
+        <Link key={route.path} to={route.path}>
+          {route.path}
+        </Link>
+      ))}
+    </>
+  );
+};
+
+const routes = [
+  { path: "/modal", component: <ModalPage /> },
+  { path: "/", component: <Home /> },
+];
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/modal" element={<ModalPage />} />
+        {routes.map((route) => (
+          <Route path={route.path} element={route.component} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
