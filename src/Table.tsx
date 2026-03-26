@@ -14,7 +14,6 @@ interface TableProps {
 
 const Table = ({ columns, data }: TableProps) => {
   const tableContainerStyle: CSSProperties = {
-    overflow: "auto",
     border: "1px solid #ddd",
     borderRadius: "8px",
   };
@@ -28,7 +27,7 @@ const Table = ({ columns, data }: TableProps) => {
     position: "sticky",
     top: 0,
     backgroundColor: "#f5f5f5",
-    zIndex: 1,
+    zIndex: 10,
     fontWeight: "bold",
     textAlign: "left",
     padding: "12px",
