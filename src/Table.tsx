@@ -46,13 +46,12 @@ const Table = ({ columns, data }: TableProps) => {
   return (
     <div style={tableContainerStyle}>
       <table style={tableStyle}>
-        <thead>
+        <thead style={{ ...headerStyle }}>
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
                 style={{
-                  ...headerStyle,
                   width: column.width,
                 }}
               >
