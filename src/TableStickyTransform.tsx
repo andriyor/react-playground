@@ -25,11 +25,11 @@ const Table = ({ columns, data }: TableProps) => {
   };
 
   const tableContainerStyle: CSSProperties = {
-    width: "100%",
-    maxWidth: "100%",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    backgroundColor: "#fff",
+    // width: "100%",
+    // maxWidth: "100%",
+    // border: "1px solid #ddd",
+    // borderRadius: "8px",
+    // backgroundColor: "#fff",
   };
 
   const stickyHeaderWrapperStyle: CSSProperties = {
@@ -37,10 +37,6 @@ const Table = ({ columns, data }: TableProps) => {
     top: 0,
     zIndex: 20,
     overflow: "hidden",
-    backgroundColor: "#f5f5f5",
-    borderBottom: "2px solid #ddd",
-    borderTopLeftRadius: "8px",
-    borderTopRightRadius: "8px",
   };
 
   const stickyHeaderInnerStyle: CSSProperties = {
@@ -55,27 +51,27 @@ const Table = ({ columns, data }: TableProps) => {
   };
 
   const tableStyle: CSSProperties = {
-    width: "max-content",
-    minWidth: "100%",
-    borderCollapse: "separate",
-    borderSpacing: 0,
+    // width: "max-content",
+    // minWidth: "100%",
+    // borderCollapse: "separate",
+    // borderSpacing: 0,
   };
 
   const headerCellStyle: CSSProperties = {
-    backgroundColor: "#f5f5f5",
-    fontWeight: "bold",
-    textAlign: "left",
-    padding: "12px",
-    borderBottom: "2px solid #ddd",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
+    // backgroundColor: "#f5f5f5",
+    // fontWeight: "bold",
+    // textAlign: "left",
+    // padding: "12px",
+    // borderBottom: "2px solid #ddd",
+    // whiteSpace: "nowrap",
+    // boxSizing: "border-box",
   };
 
   const cellStyle: CSSProperties = {
-    padding: "12px",
-    borderBottom: "1px solid #eee",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
+    // padding: "12px",
+    // borderBottom: "1px solid #eee",
+    // whiteSpace: "nowrap",
+    // boxSizing: "border-box",
   };
 
   const rowStyle: CSSProperties = {
@@ -290,7 +286,9 @@ export type { Column, TableProps };
 export const TableStickyTransform = () => {
   return (
     <div>
-      <Table columns={sampleColumns} data={sampleData} />
+      <div style={{ width: "450px" }}>
+        <Table columns={sampleColumns} data={sampleData} />
+      </div>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
       adipisci, asperiores, aut dicta doloribus exercitationem fugit itaque modi
       natus neque nesciunt numquam optio pariatur placeat quibusdam
