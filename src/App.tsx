@@ -1,7 +1,5 @@
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button } from "@mantine/core";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { BrowserRouter, Routes, Route } from "react-router";
+import ModalPage from "./ModalPage";
 
 import "@mantine/core/styles/baseline.css";
 import "@mantine/core/styles/default-css-variables.css";
@@ -30,25 +28,12 @@ import "@mantine/core/styles/Button.css";
 import "@mantine/core/styles.css";
 
 function App() {
-  const [opened, { open, close }] = useDisclosure(false);
-
   return (
-    <>
-      <Modal.Root opened={opened} onClose={close}>
-        <Modal.Overlay />
-        <Modal.Content>
-          <Modal.Header>
-            <Modal.Title>Modal title</Modal.Title>
-            <Modal.CloseButton aria-label="Close modal" />
-          </Modal.Header>
-          <Modal.Body>Modal content</Modal.Body>
-        </Modal.Content>
-      </Modal.Root>
-
-      <Button variant="default" onClick={open}>
-        Open modal
-      </Button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/modal" element={<ModalPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
