@@ -86,43 +86,51 @@ const Table = ({ columns, data }: TableProps) => {
 };
 
 const sampleData = [
-  { id: 1, name: "John Doe", email: "john@example.com", role: "Developer" },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Designer" },
-  { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Manager" },
+  { id: 1, name: "John Doe", email: "john@example.com", role: "Developer", department: "Engineering", status: "Active" },
+  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Designer", department: "Design", status: "Active" },
+  { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Manager", department: "Management", status: "On Leave" },
   {
     id: 4,
     name: "Alice Williams",
     email: "alice@example.com",
     role: "Developer",
+    department: "Engineering",
+    status: "Active",
   },
   {
     id: 5,
     name: "Charlie Brown",
     email: "charlie@example.com",
     role: "QA Engineer",
+    department: "Quality Assurance",
+    status: "Active",
   },
   {
     id: 6,
     name: "Diana Davis",
     email: "diana@example.com",
     role: "Product Owner",
+    department: "Product",
+    status: "Active",
   },
-  { id: 7, name: "Eve Martinez", email: "eve@example.com", role: "Developer" },
-  { id: 8, name: "Frank Wilson", email: "frank@example.com", role: "Designer" },
-  { id: 9, name: "Grace Lee", email: "grace@example.com", role: "Developer" },
-  { id: 10, name: "Henry Taylor", email: "henry@example.com", role: "DevOps" },
-  { id: 11, name: "Ivy Anderson", email: "ivy@example.com", role: "Developer" },
-  { id: 12, name: "Jack Thomas", email: "jack@example.com", role: "Manager" },
-  { id: 13, name: "Karen Moore", email: "karen@example.com", role: "Designer" },
-  { id: 14, name: "Leo Jackson", email: "leo@example.com", role: "Developer" },
-  { id: 15, name: "Mia White", email: "mia@example.com", role: "QA Engineer" },
+  { id: 7, name: "Eve Martinez", email: "eve@example.com", role: "Developer", department: "Engineering", status: "Active" },
+  { id: 8, name: "Frank Wilson", email: "frank@example.com", role: "Designer", department: "Design", status: "Remote" },
+  { id: 9, name: "Grace Lee", email: "grace@example.com", role: "Developer", department: "Engineering", status: "Active" },
+  { id: 10, name: "Henry Taylor", email: "henry@example.com", role: "DevOps", department: "Operations", status: "Active" },
+  { id: 11, name: "Ivy Anderson", email: "ivy@example.com", role: "Developer", department: "Engineering", status: "On Leave" },
+  { id: 12, name: "Jack Thomas", email: "jack@example.com", role: "Manager", department: "Management", status: "Active" },
+  { id: 13, name: "Karen Moore", email: "karen@example.com", role: "Designer", department: "Design", status: "Remote" },
+  { id: 14, name: "Leo Jackson", email: "leo@example.com", role: "Developer", department: "Engineering", status: "Active" },
+  { id: 15, name: "Mia White", email: "mia@example.com", role: "QA Engineer", department: "Quality Assurance", status: "Active" },
 ];
 
 const sampleColumns = [
   { key: "id", label: "ID", width: "80px" },
   { key: "name", label: "Name", width: "200px" },
   { key: "email", label: "Email", width: "250px" },
-  { key: "role", label: "Role" },
+  { key: "role", label: "Role", width: "150px" },
+  { key: "department", label: "Department", width: "180px" },
+  { key: "status", label: "Status" },
 ];
 
 export default Table;
