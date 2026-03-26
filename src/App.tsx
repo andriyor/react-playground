@@ -26,14 +26,15 @@ import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Button.css";
 
 import "@mantine/core/styles.css";
+import { StickyTable } from "./Table.tsx";
 
 const Home = () => {
   return (
     <>
       {routes.map((route) => (
-        <Link key={route.path} to={route.path}>
-          {route.path}
-        </Link>
+        <div key={route.path}>
+          <Link to={route.path}>{route.path}</Link>
+        </div>
       ))}
     </>
   );
@@ -42,6 +43,10 @@ const Home = () => {
 const routes = [
   { path: "/modal", component: <ModalPage /> },
   { path: "/", component: <Home /> },
+  {
+    path: "/table",
+    component: <StickyTable />,
+  },
 ];
 
 function App() {
