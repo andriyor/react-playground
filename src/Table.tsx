@@ -12,9 +12,8 @@ interface TableProps {
   height?: string;
 }
 
-const Table = ({ columns, data, height = "400px" }: TableProps) => {
+const Table = ({ columns, data }: TableProps) => {
   const tableContainerStyle: CSSProperties = {
-    height,
     overflow: "auto",
     border: "1px solid #ddd",
     borderRadius: "8px",
@@ -48,13 +47,13 @@ const Table = ({ columns, data, height = "400px" }: TableProps) => {
   return (
     <div style={tableContainerStyle}>
       <table style={tableStyle}>
-        <thead style={{ ...headerStyle }}>
+        <thead>
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
                 style={{
-                  // ...headerStyle,
+                  ...headerStyle,
                   width: column.width,
                 }}
               >
