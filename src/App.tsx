@@ -26,9 +26,9 @@ import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Button.css";
 
 import "@mantine/core/styles.css";
-import { TableStickyTransformTwoTables } from "./table/TableStickyTransformTwoTables.tsx";
-import { TablePositionSticky } from "./table/TablePositionSticky.tsx";
 import { TableStickyTransformSameTable } from "./table/TableStickyTransformSameTable.tsx";
+import { TablePositionSticky } from "./table/TablePositionSticky.tsx";
+import { TableStickyTransformTwoTables } from "./table/TableStickyTransformTwoTables.tsx";
 
 const Home = () => {
   return (
@@ -50,12 +50,12 @@ const routes = [
     component: <TablePositionSticky />,
   },
   {
-    path: "/TableStickyTransformTwoTables",
-    component: <TableStickyTransformTwoTables />,
-  },
-  {
     path: "/TableStickyTransformSameTable",
     component: <TableStickyTransformSameTable />,
+  },
+  {
+    path: "/TableStickyTransformTwoTables",
+    component: <TableStickyTransformTwoTables />,
   },
 ];
 

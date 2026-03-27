@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import { useState } from "react";
+import type { CSSProperties, ReactNode, UIEvent } from "react";
 
 interface Column {
   key: string;
@@ -16,61 +16,33 @@ interface TableProps {
 }
 
 const Table = ({ columns, data }: TableProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [headerOffset, setHeaderOffset] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const getColumnWidth = (column: Column) => column.width ?? "160px";
 
-  useEffect(() => {
-    const updateHeaderOffset = () => {
-      const container = containerRef.current;
-
-      if (!container) {
-        return;
-      }
-
-      const rect = container.getBoundingClientRect();
-      const viewportTop = 0;
-      const headerHeight = 48;
-      const containerTop = rect.top;
-      const containerBottom = rect.bottom;
-      const maxOffset = Math.max(container.scrollHeight - headerHeight, 0);
-
-      if (containerTop >= viewportTop) {
-        setHeaderOffset(0);
-        return;
-      }
-
-      if (containerBottom <= headerHeight) {
-        setHeaderOffset(maxOffset);
-        return;
-      }
-
-      const nextOffset = Math.min(
-        Math.max(viewportTop - containerTop, 0),
-        maxOffset,
-      );
-
-      setHeaderOffset(nextOffset);
-    };
-
-    updateHeaderOffset();
-
-    window.addEventListener("scroll", updateHeaderOffset, { passive: true });
-    window.addEventListener("resize", updateHeaderOffset);
-
-    return () => {
-      window.removeEventListener("scroll", updateHeaderOffset);
-      window.removeEventListener("resize", updateHeaderOffset);
-    };
-  }, [data.length]);
+  const handleBodyScroll = (event: UIEvent<HTMLDivElement>) => {
+    setScrollLeft(event.currentTarget.scrollLeft);
+  };
 
   const tableContainerStyle: CSSProperties = {
-    width: "100%",
-    maxWidth: "100%",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    backgroundColor: "#fff",
+    // width: "100%",
+    // maxWidth: "100%",
+    // border: "1px solid #ddd",
+    // borderRadius: "8px",
+    // backgroundColor: "#fff",
+  };
+
+  const stickyHeaderWrapperStyle: CSSProperties = {
+    position: "sticky",
+    top: 0,
+    zIndex: 20,
+    overflow: "hidden",
+  };
+
+  const stickyHeaderInnerStyle: CSSProperties = {
+    width: "max-content",
+    minWidth: "100%",
+    transform: `translateX(-${scrollLeft}px)`,
   };
 
   const tableScrollStyle: CSSProperties = {
@@ -79,31 +51,27 @@ const Table = ({ columns, data }: TableProps) => {
   };
 
   const tableStyle: CSSProperties = {
-    width: "max-content",
-    minWidth: "100%",
-    borderCollapse: "separate",
-    borderSpacing: 0,
+    // width: "max-content",
+    // minWidth: "100%",
+    // borderCollapse: "separate",
+    // borderSpacing: 0,
   };
 
   const headerCellStyle: CSSProperties = {
-    position: "relative",
-    transform: `translateY(${headerOffset}px)`,
     backgroundColor: "#f5f5f5",
-    zIndex: 10,
-    fontWeight: "bold",
-    textAlign: "left",
-    padding: "12px",
-    borderBottom: "2px solid #ddd",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
+    // fontWeight: "bold",
+    // textAlign: "left",
+    // padding: "12px",
+    // borderBottom: "2px solid #ddd",
+    // whiteSpace: "nowrap",
+    // boxSizing: "border-box",
   };
 
   const cellStyle: CSSProperties = {
-    padding: "12px",
-    borderBottom: "1px solid #eee",
-    whiteSpace: "nowrap",
-    boxSizing: "border-box",
-    backgroundColor: "#fff",
+    // padding: "12px",
+    // borderBottom: "1px solid #eee",
+    // whiteSpace: "nowrap",
+    // boxSizing: "border-box",
   };
 
   const rowStyle: CSSProperties = {
@@ -111,30 +79,37 @@ const Table = ({ columns, data }: TableProps) => {
   };
 
   return (
-    <div ref={containerRef} style={tableContainerStyle}>
-      <div style={tableScrollStyle}>
-        <table style={tableStyle}>
-          <thead>
-            <tr>
-              {columns.map((column) => {
-                const columnWidth = getColumnWidth(column);
+    <div style={tableContainerStyle}>
+      <div style={stickyHeaderWrapperStyle}>
+        <div style={stickyHeaderInnerStyle}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {columns.map((column) => {
+                  const columnWidth = getColumnWidth(column);
 
-                return (
-                  <th
-                    key={column.key}
-                    style={{
-                      ...headerCellStyle,
-                      width: columnWidth,
-                      minWidth: columnWidth,
-                      maxWidth: columnWidth,
-                    }}
-                  >
-                    {column.label}
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
+                  return (
+                    <th
+                      key={column.key}
+                      style={{
+                        ...headerCellStyle,
+                        width: columnWidth,
+                        minWidth: columnWidth,
+                        maxWidth: columnWidth,
+                      }}
+                    >
+                      {column.label}
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+
+      <div style={tableScrollStyle} onScroll={handleBodyScroll}>
+        <table style={tableStyle}>
           <tbody>
             {data.map((row, index) => (
               <tr
@@ -311,7 +286,6 @@ export type { Column, TableProps };
 export const TableStickyTransformTwoTables = () => {
   return (
     <div>
-      <div>Jumping header</div>
       <div style={{ width: "450px" }}>
         <Table columns={sampleColumns} data={sampleData} />
       </div>
