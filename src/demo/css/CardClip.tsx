@@ -39,12 +39,8 @@ export const CardClip = () => {
       {fixed && <style>{FIX_CSS}</style>}
 
       <label style={{ display: "block", marginBottom: 16 }}>
-        <input
-          type="checkbox"
-          checked={fixed}
-          onChange={(e) => setFixed(e.target.checked)}
-        />{" "}
-        apply fix — <code>{FIX_CSS}</code>
+        <input type="checkbox" checked={fixed} onChange={(e) => setFixed(e.target.checked)} /> apply
+        fix — <code>{FIX_CSS}</code>
       </label>
 
       {/* Pushes the control near the bottom of the viewport, which is what makes

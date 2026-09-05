@@ -55,11 +55,7 @@ const Table = ({ columns, data }: TableProps) => {
     return Math.min(Math.max(viewportTop - containerTop, 0), maxOffset);
   };
 
-  const headerOffset = useSyncExternalStore(
-    subscribeToScroll,
-    getHeaderOffset,
-    () => 0,
-  );
+  const headerOffset = useSyncExternalStore(subscribeToScroll, getHeaderOffset, () => 0);
 
   const tableContainerStyle: CSSProperties = {
     width: "100%",
@@ -301,7 +297,6 @@ const sampleColumns = [
   { key: "status", label: "Status" },
 ];
 
-
 export const TableStickyTransformSameTable = () => {
   return (
     <div>
@@ -309,61 +304,49 @@ export const TableStickyTransformSameTable = () => {
       <div style={{ width: "450px" }}>
         <Table columns={sampleColumns} data={sampleData} />
       </div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
-      adipisci, asperiores, aut dicta doloribus exercitationem fugit itaque modi
-      natus neque nesciunt numquam optio pariatur placeat quibusdam
-      reprehenderit, saepe velit veniam. Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Distinctio iure quidem similique soluta. Autem deleniti
-      doloremque earum hic itaque iure magni minima nemo, nobis quaerat qui
-      quod, sit ut, veritatis. Lorem ipsum dolor sit amet, consectetur
-      adipisicing elit. Ad aliquam debitis, delectus dolorem doloribus dolorum
-      exercitationem facere in ipsa mollitia optio possimus praesentium
-      quibusdam rerum totam ut velit vitae voluptate. Lorem ipsum dolor sit
-      amet, consectetur adipisicing elit. Ab accusantium, assumenda atque aut
-      dolorem, doloribus ducimus excepturi id, inventore itaque laboriosam nam
-      perferendis repellendus tenetur vel. Ipsa sint ut voluptates. Lorem ipsum
-      dolor sit amet, consectetur adipisicing elit. Delectus distinctio itaque
-      odio officia ut. Aliquid autem beatae, eaque eveniet explicabo nulla
-      officia rem sapiente vel, vero voluptas voluptate voluptates voluptatum.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa fuga
-      harum molestiae possimus quod sapiente veritatis! Deserunt ducimus ea illo
-      nesciunt non omnis quisquam ratione sapiente, similique sint vero. Lorem
-      ipsum dolor sit amet, consectetur adipisicing elit. Amet culpa, deleniti
-      dolorum et explicabo incidunt laboriosam libero magnam, nihil odit
-      officiis perferendis perspiciatis quae, quaerat sunt unde vel voluptas!
-      Repudiandae. lorem Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. Adipisci, assumenda cumque delectus deleniti dolore eius eligendi
-      hic illo illum, laborum magnam molestiae nihil non officiis quas ullam
-      unde ut vel. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Animi architecto aut consectetur corporis dignissimos ducimus facere
-      itaque iure, officia officiis omnis optio perspiciatis praesentium rem,
-      repudiandae, tempore veniam voluptatem voluptatibus! Lorem ipsum dolor sit
-      amet, consectetur adipisicing elit. Ad cupiditate dignissimos doloremque
-      facilis impedit incidunt ipsam iusto mollitia nam nobis nostrum nulla
-      possimus quasi quo sequi similique sit, veniam voluptas. Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. Amet autem corporis cumque debitis
-      dolores harum, ipsam iste labore, laborum mollitia nemo neque nihil quis
-      soluta sunt totam veniam vero, vitae. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Amet autem corporis debitis dolore enim ex
-      excepturi explicabo laborum non, nostrum perspiciatis placeat, quibusdam,
-      quos tempora tempore ullam unde veniam voluptatem? Lorem ipsum dolor sit
-      amet, consectetur adipisicing elit. Architecto commodi cum debitis
-      deserunt dicta dignissimos excepturi explicabo fugit harum id, molestias
-      nam nulla numquam perferendis porro recusandae reiciendis, sapiente totam.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad architecto,
-      cum deserunt dolor exercitationem, magnam odio pariatur qui quisquam
-      repellat reprehenderit voluptatibus, voluptatum. Asperiores doloremque
-      fugit modi nulla qui? Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. Fugiat ipsam nemo reiciendis similique voluptatibus. Aperiam dicta,
-      doloribus esse eveniet excepturi id ipsa necessitatibus nisi officia optio
-      pariatur praesentium provident tempora? Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Accusamus amet aspernatur beatae dolor
-      dolorum eaque, est excepturi explicabo ipsa laboriosam mollitia nulla
-      perferendis, provident quibusdam quo, quos recusandae saepe velit! Lorem
-      ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid
-      aperiam corporis dolor doloremque dolores eligendi error esse
-      exercitationem hic necessitatibus nesciunt, non odio porro provident
-      quisquam recusandae saepe voluptates.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci, asperiores, aut
+      dicta doloribus exercitationem fugit itaque modi natus neque nesciunt numquam optio pariatur
+      placeat quibusdam reprehenderit, saepe velit veniam. Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Distinctio iure quidem similique soluta. Autem deleniti doloremque earum hic
+      itaque iure magni minima nemo, nobis quaerat qui quod, sit ut, veritatis. Lorem ipsum dolor
+      sit amet, consectetur adipisicing elit. Ad aliquam debitis, delectus dolorem doloribus dolorum
+      exercitationem facere in ipsa mollitia optio possimus praesentium quibusdam rerum totam ut
+      velit vitae voluptate. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+      accusantium, assumenda atque aut dolorem, doloribus ducimus excepturi id, inventore itaque
+      laboriosam nam perferendis repellendus tenetur vel. Ipsa sint ut voluptates. Lorem ipsum dolor
+      sit amet, consectetur adipisicing elit. Delectus distinctio itaque odio officia ut. Aliquid
+      autem beatae, eaque eveniet explicabo nulla officia rem sapiente vel, vero voluptas voluptate
+      voluptates voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut culpa
+      fuga harum molestiae possimus quod sapiente veritatis! Deserunt ducimus ea illo nesciunt non
+      omnis quisquam ratione sapiente, similique sint vero. Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Amet culpa, deleniti dolorum et explicabo incidunt laboriosam libero magnam,
+      nihil odit officiis perferendis perspiciatis quae, quaerat sunt unde vel voluptas!
+      Repudiandae. lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci,
+      assumenda cumque delectus deleniti dolore eius eligendi hic illo illum, laborum magnam
+      molestiae nihil non officiis quas ullam unde ut vel. Lorem ipsum dolor sit amet, consectetur
+      adipisicing elit. Animi architecto aut consectetur corporis dignissimos ducimus facere itaque
+      iure, officia officiis omnis optio perspiciatis praesentium rem, repudiandae, tempore veniam
+      voluptatem voluptatibus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+      cupiditate dignissimos doloremque facilis impedit incidunt ipsam iusto mollitia nam nobis
+      nostrum nulla possimus quasi quo sequi similique sit, veniam voluptas. Lorem ipsum dolor sit
+      amet, consectetur adipisicing elit. Amet autem corporis cumque debitis dolores harum, ipsam
+      iste labore, laborum mollitia nemo neque nihil quis soluta sunt totam veniam vero, vitae.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem corporis debitis dolore
+      enim ex excepturi explicabo laborum non, nostrum perspiciatis placeat, quibusdam, quos tempora
+      tempore ullam unde veniam voluptatem? Lorem ipsum dolor sit amet, consectetur adipisicing
+      elit. Architecto commodi cum debitis deserunt dicta dignissimos excepturi explicabo fugit
+      harum id, molestias nam nulla numquam perferendis porro recusandae reiciendis, sapiente totam.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad architecto, cum deserunt dolor
+      exercitationem, magnam odio pariatur qui quisquam repellat reprehenderit voluptatibus,
+      voluptatum. Asperiores doloremque fugit modi nulla qui? Lorem ipsum dolor sit amet,
+      consectetur adipisicing elit. Fugiat ipsam nemo reiciendis similique voluptatibus. Aperiam
+      dicta, doloribus esse eveniet excepturi id ipsa necessitatibus nisi officia optio pariatur
+      praesentium provident tempora? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Accusamus amet aspernatur beatae dolor dolorum eaque, est excepturi explicabo ipsa laboriosam
+      mollitia nulla perferendis, provident quibusdam quo, quos recusandae saepe velit! Lorem ipsum
+      dolor sit amet, consectetur adipisicing elit. Adipisci aliquid aperiam corporis dolor
+      doloremque dolores eligendi error esse exercitationem hic necessitatibus nesciunt, non odio
+      porro provident quisquam recusandae saepe voluptates.
     </div>
   );
 };

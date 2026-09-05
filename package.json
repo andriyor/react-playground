@@ -1,12 +1,15 @@
 {
   "name": "react-playground",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "node -e \"require('node:child_process').spawnSync('git',['config','core.hooksPath','git-hooks'])\"",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,8 +25,8 @@
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "oxfmt": "^0.66.0",
     "oxlint": "^1.81.0",
-    "prettier": "3.7.4",
     "typescript": "~5.9.3",
     "vite": "^7.2.4"
   },
