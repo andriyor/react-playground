@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router";
-import ModalPage from "./ModalPage";
 
 import "@mantine/core/styles/baseline.css";
 import "@mantine/core/styles/default-css-variables.css";
@@ -26,45 +25,50 @@ import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Button.css";
 
 import "@mantine/core/styles.css";
-import { TableStickyTransformSameTable } from "./table/TableStickyTransformSameTable.tsx";
-import { TablePositionSticky } from "./table/TablePositionSticky.tsx";
-import { TableStickyTransformTwoTables } from "./table/TableStickyTransformTwoTables.tsx";
+// Every demo under src/demo is a route: src/demo/css/CardClip.tsx → /css/CardClip.
+// Each file exports a component named after the file, or a default export.
+const modules = import.meta.glob<Record<string, React.ComponentType>>(
+  "./demo/**/*.tsx",
+  { eager: true },
+);
+
+const demos = Object.entries(modules).map(([file, mod]) => {
+  const [folder, name] = file.replace("./demo/", "").replace(".tsx", "").split("/");
+  return { folder, name, Component: mod[name] ?? mod.default };
+});
 
 const Home = () => {
+  const folders = [...new Set(demos.map((d) => d.folder))];
+
   return (
     <>
-      {routes.map((route) => (
-        <div key={route.path}>
-          <Link to={route.path}>{route.path}</Link>
+      {folders.map((folder) => (
+        <div key={folder}>
+          <h3>{folder}</h3>
+          {demos
+            .filter((d) => d.folder === folder)
+            .map(({ name }) => (
+              <div key={name}>
+                <Link to={`/${folder}/${name}`}>{name}</Link>
+              </div>
+            ))}
         </div>
       ))}
     </>
   );
 };
 
-const routes = [
-  { path: "/modal", component: <ModalPage /> },
-  { path: "/", component: <Home /> },
-  {
-    path: "/TablePositionSticky",
-    component: <TablePositionSticky />,
-  },
-  {
-    path: "/TableStickyTransformSameTable",
-    component: <TableStickyTransformSameTable />,
-  },
-  {
-    path: "/TableStickyTransformTwoTables",
-    component: <TableStickyTransformTwoTables />,
-  },
-];
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {routes.map((route) => (
-          <Route path={route.path} element={route.component} />
+        <Route path="/" element={<Home />} />
+        {demos.map(({ folder, name, Component }) => (
+          <Route
+            key={`${folder}/${name}`}
+            path={`/${folder}/${name}`}
+            element={<Component />}
+          />
         ))}
       </Routes>
     </BrowserRouter>
