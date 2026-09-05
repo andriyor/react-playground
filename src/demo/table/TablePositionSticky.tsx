@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface Column {
   key: string;
@@ -8,7 +8,7 @@ interface Column {
 
 interface TableProps {
   columns: Column[];
-  data: Record<string, any>[];
+  data: Record<string, ReactNode>[];
   height?: string;
 }
 
@@ -217,9 +217,6 @@ const sampleColumns = [
   { key: "status", label: "Status" },
 ];
 
-export default Table;
-export { sampleData, sampleColumns };
-export type { Column, TableProps };
 
 export const TablePositionSticky = () => {
   return (

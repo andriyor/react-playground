@@ -305,8 +305,6 @@ const sampleColumns = [
   { key: "status", label: "Status" },
 ];
 
-export { sampleData, sampleColumns };
-export type { Column, TableProps };
 
 export const TableStickyTransformSameTable = () => {
   return (
