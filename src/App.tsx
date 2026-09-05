@@ -4,21 +4,14 @@ import { BrowserRouter, Routes, Route, Link } from "react-router";
 // Every demo under src/demo is a route: src/demo/css/CardClip.tsx → /css/CardClip.
 // Each file exports a component named after the file, or a default export.
 // Lazy, so a demo's own imports (CSS resets, providers) only load on its route.
-const modules = import.meta.glob<Record<string, React.ComponentType>>(
-  "./demo/**/*.tsx",
-);
+const modules = import.meta.glob<Record<string, React.ComponentType>>("./demo/**/*.tsx");
 
 const demos = Object.entries(modules).map(([file, load]) => {
-  const [folder, name] = file
-    .replace("./demo/", "")
-    .replace(".tsx", "")
-    .split("/");
+  const [folder, name] = file.replace("./demo/", "").replace(".tsx", "").split("/");
   return {
     folder,
     name,
-    Component: lazy(() =>
-      load().then((mod) => ({ default: mod[name] ?? mod.default })),
-    ),
+    Component: lazy(() => load().then((mod) => ({ default: mod[name] ?? mod.default }))),
   };
 });
 
@@ -51,11 +44,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {demos.map(({ folder, name, Component }) => (
-            <Route
-              key={`${folder}/${name}`}
-              path={`/${folder}/${name}`}
-              element={<Component />}
-            />
+            <Route key={`${folder}/${name}`} path={`/${folder}/${name}`} element={<Component />} />
           ))}
         </Routes>
       </Suspense>
