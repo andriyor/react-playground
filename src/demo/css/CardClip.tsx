@@ -3,10 +3,20 @@ import { useState } from "react";
 /**
  * `overflow: clip` on a card clips a dropdown menu that opens upward.
  *
- * Dropdown libraries flip the menu above the control (`bottom: 100%`) when the
- * *viewport* has no room below it, without looking at clipping ancestors. The
- * menu then leaves the card's box and the card cuts it off — which reads as
- * "something is overlapping my dropdown" when nothing is.
+ * Dropdown libraries flip the menu above the control (`bottom: 100%`) when
+ * there is no room below. Floating UI does treat `overflow: clip` ancestors as
+ * clipping boundaries, but flipping can't escape one — the card has no room in
+ * either direction, so the menu leaves the card's box and gets cut off. Reads
+ * as "something is overlapping my dropdown" when nothing is. Only a portal fixes
+ * it for real.
+ *
+ * How common is `overflow: clip` in the wild? Rare. Of 42 UI libraries grepped
+ * (Sept 2026), `overflow: hidden` dominates everywhere. Only Polaris and React
+ * Spectrum S2 clip their Card by default. daisyUI, PatternFly, shadcn, Cloudscape
+ * use clip on accordion/collapse panels, avatars and nav — height animations,
+ * which is the property's intended niche. MUI, Mantine, Chakra, Ant Design,
+ * Bootstrap, Vuetify, Angular Material, Carbon, Primer, Fluent, HeroUI: zero.
+ * Radix Themes and Bulma only expose it as opt-in utility classes.
  *
  * Open the dropdown, then toggle the fix.
  */
