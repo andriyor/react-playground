@@ -1,5 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import type { CSSProperties, ReactNode } from "react";
+
+const subscribeToScroll = (onStoreChange: () => void) => {
+  window.addEventListener("scroll", onStoreChange, { passive: true });
+  window.addEventListener("resize", onStoreChange);
+
+  return () => {
+    window.removeEventListener("scroll", onStoreChange);
+    window.removeEventListener("resize", onStoreChange);
+  };
+};
 
 interface Column {
   key: string;
@@ -17,53 +27,39 @@ interface TableProps {
 
 const Table = ({ columns, data }: TableProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [headerOffset, setHeaderOffset] = useState(0);
 
   const getColumnWidth = (column: Column) => column.width ?? "160px";
 
-  useEffect(() => {
-    const updateHeaderOffset = () => {
-      const container = containerRef.current;
+  const getHeaderOffset = () => {
+    const container = containerRef.current;
 
-      if (!container) {
-        return;
-      }
+    if (!container) {
+      return 0;
+    }
 
-      const rect = container.getBoundingClientRect();
-      const viewportTop = 0;
-      const headerHeight = 48;
-      const containerTop = rect.top;
-      const containerBottom = rect.bottom;
-      const maxOffset = Math.max(container.scrollHeight - headerHeight, 0);
+    const rect = container.getBoundingClientRect();
+    const viewportTop = 0;
+    const headerHeight = 48;
+    const containerTop = rect.top;
+    const containerBottom = rect.bottom;
+    const maxOffset = Math.max(container.scrollHeight - headerHeight, 0);
 
-      if (containerTop >= viewportTop) {
-        setHeaderOffset(0);
-        return;
-      }
+    if (containerTop >= viewportTop) {
+      return 0;
+    }
 
-      if (containerBottom <= headerHeight) {
-        setHeaderOffset(maxOffset);
-        return;
-      }
+    if (containerBottom <= headerHeight) {
+      return maxOffset;
+    }
 
-      const nextOffset = Math.min(
-        Math.max(viewportTop - containerTop, 0),
-        maxOffset,
-      );
+    return Math.min(Math.max(viewportTop - containerTop, 0), maxOffset);
+  };
 
-      setHeaderOffset(nextOffset);
-    };
-
-    updateHeaderOffset();
-
-    window.addEventListener("scroll", updateHeaderOffset, { passive: true });
-    window.addEventListener("resize", updateHeaderOffset);
-
-    return () => {
-      window.removeEventListener("scroll", updateHeaderOffset);
-      window.removeEventListener("resize", updateHeaderOffset);
-    };
-  }, [data.length]);
+  const headerOffset = useSyncExternalStore(
+    subscribeToScroll,
+    getHeaderOffset,
+    () => 0,
+  );
 
   const tableContainerStyle: CSSProperties = {
     width: "100%",
