@@ -3,6 +3,8 @@
 Isolated reproductions of browser and CSS behaviour — sticky table headers, clipping
 ancestors, modal internals. One page per thing, small enough to poke at.
 
+Live: https://react-playground-three-zeta.vercel.app/
+
 Started from the React + TypeScript + Vite template (`@vitejs/plugin-react`, Babel
 Fast Refresh); the original template notes are kept at the bottom.
 

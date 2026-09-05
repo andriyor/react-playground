@@ -27,6 +27,7 @@ const Home = () => {
 
   return (
     <>
+      <a href="https://github.com/andriyor/react-playground">GitHub</a>
       {folders.map((folder) => (
         <div key={folder}>
           <h3>{folder}</h3>
